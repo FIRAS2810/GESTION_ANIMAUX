@@ -1,0 +1,15 @@
+<form (ngSubmit)="saveRegime()" #regimeForm="ngForm">
+    <div [hidden]="ajout">
+      <label>ID Regime</label>
+      <input type="text" [(ngModel)]="regime.idRegime" name="idRegime" class="form-control w-25">
+    </div>
+    <div>
+      <label>Nom Regime</label>
+      <input type="text" [(ngModel)]="regime.nomRegime" name="nomRegime" class="form-control"
+      placeholder="Entrez un nom de regime..." required>
+    </div>
+    <div class="mt-2">
+      <button type="submit" [disabled]="!regime.nomRegime" class="btn btn-success">Ajouter</button>
+    </div>
+  </form>
+  

@@ -1,0 +1,22 @@
+<div class="container">
+    <app-update-regime [regime]="updatedReg" (RegimeUpdated)= "RegimeUpdated($event)" [ajout]="ajout" ></app-update-regime>
+    <div class="card shadow mb-4">
+        <div class="card-body">
+            <table class="table table-striped">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nom Regime</th>
+                    </tr>
+                </thead>
+                <tbody *ngFor="let r of regimes">
+                    <tr>
+                        <td>{{r.idRegime}}</td>
+                        <td>{{r.nomRegime}}</td>
+                        <td><a class="btn btn-success" (click)="updateReg(r)">Editer</a></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>

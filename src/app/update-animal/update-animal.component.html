@@ -1,0 +1,36 @@
+<div class="container" *ngIf="currentAnimal">
+    <div>
+        <h2>Modifier un Animal :</h2>
+    </div>
+    <form>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Animal</label>
+            <input readonly type="text" [(ngModel)]="currentAnimal.idAnimal" name="idAnimal" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Animal</label>
+            <input type="text" [(ngModel)]="currentAnimal.nomAnimal" name="nomAnimal" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Animal</label>
+            <input type="number" [(ngModel)]="currentAnimal.prixAnimal" name="prixAnimal" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date Naissance</label>
+            <input type="date" [ngModel]="currentAnimal.dateNaissance | date: 'yyyy-MM-dd'"
+                (ngModelChange)=" currentAnimal.dateNaissance= $event" name="dateNaissance" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <select class="form-control form-control-lg" id="idRegime" name="idRegime"
+            [(ngModel)]="updateRegId">
+            <option *ngFor="let reg of regimes" [value]="reg.idRegime" >
+            {{reg.nomRegime}}
+            </option>
+            </select>
+            </div>
+            
+        <div class="mt-2">
+            <button type="submit" (click)="updateAnimal()"  class="btn btn-success">Modifer</button>
+        </div>
+    </form>
+</div>

@@ -1,0 +1,35 @@
+<div class="container">
+    <div>
+        <h2>Ajouter un Animal :</h2>
+    </div>
+    <form>
+        <div hidden class="col-sm-2 col-md-2 col-lg-2">
+            <label>ID Animal</label>
+            <input type="text" [(ngModel)]="newAniaml.idAnimal" name="idAnimal" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Nom Animal</label>
+            <input type="text" [(ngModel)]="newAniaml.nomAnimal" name="nomAnimal" class="form-control">
+        </div>
+        <div class="col-sm-2 col-md-2 col-lg-2">
+            <label>Prix Animal</label>
+            <input type="number" [(ngModel)]="newAniaml.prixAnimal" name="prixAnimal" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Date Naissance</label>
+            <input type="date" [(ngModel)]="newAniaml.dateNaissance" name="dateNaissance" class="form-control">
+        </div>
+        <div class="col-sm-4 col-md-4 col-lg-4">
+            <label>Regime</label>
+            <select class="form-control form-control-lg" id="idRegime" name="idRegime" [(ngModel)]="newIdRegime">
+                <option *ngFor="let reg of regimes" [value]="reg.idRegime">
+                    {{reg.nomRegime}}
+                </option>
+            </select>
+        </div>
+        <div class="mt-2">
+            <button type="submit" (click)="addAnimal()" class="btn btn-success"
+                style="margin-left: 10px;">Ajouter</button>
+        </div>
+    </form>
+</div>
