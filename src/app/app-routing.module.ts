@@ -9,6 +9,8 @@ import { ListeRegimesComponent } from './liste-regimes/liste-regimes.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
 import { animalGuard } from './animal.guard';
+import { RegisterComponent } from './register/register.component';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
 
 const routes: Routes = [
 {path:"animaux",component: AnimauxComponent},
@@ -19,8 +21,9 @@ const routes: Routes = [
 {path: "rechercheParNom", component : RechercheParNomComponent},
 {path: "listeRegimes", component :ListeRegimesComponent },
 {path: 'app-forbidden', component: ForbiddenComponent},
-{path: 'login', component: LoginComponent}
-
+{path: 'login', component: LoginComponent},
+{path: 'register', component: RegisterComponent},
+{path:"verifEmail",component: VerifEmailComponent}
 ];
 
 @NgModule({

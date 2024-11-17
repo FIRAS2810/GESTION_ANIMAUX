@@ -3,8 +3,9 @@ import { inject } from '@angular/core';
 import { AuthService } from './service/auth.service';
 
 export const animalGuard: CanActivateFn = (route: ActivatedRouteSnapshot, state: RouterStateSnapshot): boolean => {
-  const authService = inject(AuthService); // Use inject to access the AuthService
-  const router = inject(Router);           // Use inject to access the Router
+  const authService = inject(AuthService);
+  const router = inject(Router);  
+  
   
   if (authService.isAdmin()) {
     return true;

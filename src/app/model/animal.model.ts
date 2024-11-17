@@ -1,3 +1,4 @@
+import { Image } from "./Image.model";
 import { Regime } from "./regime.model";
 
 export class Animal {
@@ -5,5 +6,8 @@ export class Animal {
     nomAnimal? : string;
     prixAnimal? : number;
     dateNaissance? : Date ;
-    regime! : Regime;
+    regime!: Regime;
+    image!: Image;
+    imageStr!:string;
+    images!:Image[];
 }

@@ -4,6 +4,7 @@ import { Regime } from '../model/regime.model';
 import { Observable } from 'rxjs';
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { AuthService } from './auth.service';
+import { Image } from '../model/Image.model';
 
 const httpOptions = {
   headers: new HttpHeaders({ 'Content-Type': 'application/json' })
@@ -37,11 +38,7 @@ export class AnimalService {
 
 
   listeAnimals(): Observable<Animal[]> {
-
-    let jwt = this.authService.getToken();
-    
-let httpHeaders = new HttpHeaders({"Authorization":jwt})
-return this.http.get<Animal[]>(this.apiURL+"/all",{headers:httpHeaders});
+    return this.http.get<Animal[]>(this.apiURL+"/all");
   }
 
   ajouterAnimal(anim: Animal): Observable<Animal> {
@@ -49,6 +46,8 @@ return this.http.get<Animal[]>(this.apiURL+"/all",{headers:httpHeaders});
     let httpHeaders = new HttpHeaders({"Authorization":jwt}) 
     return this.http.post<Animal>(this.apiURL+"/addanim", anim,{headers:httpHeaders} );
   }
+
+
 
   supprimerAnimal(id: number) {
     const url = `${this.apiURL}/delanim/${id}`;
@@ -99,6 +98,31 @@ return this.http.get<Animal[]>(this.apiURL+"/all",{headers:httpHeaders});
     let httpHeaders = new HttpHeaders({"Authorization":jwt})
     return this.http.post<Regime>(this.apiURLReg+'/addreg',reg,{headers:httpHeaders});
     }
+
+
+    uploadImage(file: File, filename: string): Observable<Image>{
+      const imageFormData = new FormData();
+      imageFormData.append('image', file, filename);
+      const url = `${this.apiURL + '/image/upload'}`;
+      return this.http.post<Image>(url, imageFormData);
+      }
+      
+      loadImage(id: number): Observable<Image> {
+      const url = `${this.apiURL + '/image/get/info'}/${id}`;
+      return this.http.get<Image>(url);
+      }
+
+      uploadImageAnim(file: File, filename: string, idAnim:number): Observable<any>{
+        const imageFormData = new FormData();
+        imageFormData.append('image', file, filename);
+        const url = `${this.apiURL + '/image/uploadImageAnim'}/${idAnim}`;
+        return this.http.post(url, imageFormData);
+        }
+
+        supprimerImage(id : number) {
+          const url = `${this.apiURL}/image/delete/${id}`;
+          return this.http.delete(url, httpOptions);
+          }
     
 
 }

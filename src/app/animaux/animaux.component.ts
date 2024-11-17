@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Animal } from '../model/animal.model';
 import { AnimalService } from '../service/animal.service';
 import { AuthService } from '../service/auth.service';
+import { Image } from '../model/Image.model';
 
 @Component({
   selector: 'app-animaux',
@@ -10,8 +11,9 @@ import { AuthService } from '../service/auth.service';
 })
 export class AnimauxComponent implements OnInit {
 
-  anims!: Animal[];
-
+  anims?: Animal[];
+  images !:Image
+  imageStr!:string;
   /*animal! : Animal;*/
 
   constructor(private animalService: AnimalService,
@@ -24,12 +26,16 @@ export class AnimauxComponent implements OnInit {
   };
 
 
-chargerAnimals() {
-  this.animalService.listeAnimals().subscribe(animals => {
-
-    this.anims = animals;
-  })
-}
+  chargerAnimals() {
+    this.animalService.listeAnimals().subscribe(animes => {
+      this.anims = animes;
+      this.anims.forEach((animal) => {
+      animal.imageStr = 'data:' + animal.images[0].type + ';base64,' +
+      animal.images[0].image;
+      });
+      });
+      
+  }
 
 supprimerAnimal(anim : Animal)
 {
@@ -40,8 +46,13 @@ supprimerAnimal(anim : Animal)
       this.chargerAnimals();
     });
 }
+
+
+
 }
 
 
 
+
+  
 

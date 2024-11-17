@@ -5,9 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { AnimauxComponent } from './animaux/animaux.component';
 import { AddAnimalComponent } from './add-animal/add-animal.component';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { UpdateAnimalComponent } from './update-animal/update-animal.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule} from '@angular/common/http';
 import { RechercheParRegimeComponent } from './recherche-par-regime/recherche-par-regime.component';
 import { RechercheParNomComponent } from './recherche-par-nom/recherche-par-nom.component';
 import { SearchFilterPipe } from './search-filter.pipe';
@@ -15,6 +15,9 @@ import { ListeRegimesComponent } from './liste-regimes/liste-regimes.component';
 import { UpdateRegimeComponent } from './update-regime/update-regime.component';
 import { LoginComponent } from './login/login.component';
 import { ForbiddenComponent } from './forbidden/forbidden.component';
+import { RegisterComponent } from './register/register.component';
+import { TokenInterceptor } from './service/token.interceptor';
+import { VerifEmailComponent } from './verif-email/verif-email.component';
 
 
 @NgModule({
@@ -31,15 +34,24 @@ import { ForbiddenComponent } from './forbidden/forbidden.component';
           UpdateRegimeComponent,
           LoginComponent,
           ForbiddenComponent,
+          RegisterComponent,
+          VerifEmailComponent,
           
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
+
   ],
-  providers: [],
+  providers: 
+    [{ provide : HTTP_INTERCEPTORS,
+      useClass : TokenInterceptor,
+      multi : true}
+       
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
